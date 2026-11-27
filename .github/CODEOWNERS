@@ -1,0 +1,6 @@
+# Code owners for TeachWiz.
+# GitHub asks these people to review every pull request that changes the files below,
+# and the "Require review from Code Owners" branch rule makes one of their approvals mandatory.
+# Nobody can approve their own pull request, so another owner reviews it.
+
+*  @mahmudcoding @bekmurod2510 @echo05w
