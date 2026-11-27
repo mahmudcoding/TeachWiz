@@ -24,3 +24,24 @@ jobs:
 
       - name: Run automated tests
         run: npm test --if-present
+
+  deploy:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    
+    concurrency:
+      group: production-deploy
+      cancel-in-progress: false
+    env:
+      DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
+
+    steps:
+      - name: Report missing deploy hook
+        if: env.DEPLOY_HOOK_URL == ''
+        run: echo "::notice::DEPLOY_HOOK_URL is not set; skipping deployment."
+
+      - name: Trigger deployment
+        if: env.DEPLOY_HOOK_URL != ''
+        run: curl --fail --silent --show-error -X POST "$DEPLOY_HOOK_URL"
