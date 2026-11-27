@@ -1,6 +1,26 @@
-# Code owners for TeachWiz.
-# GitHub asks these people to review every pull request that changes the files below,
-# and the "Require review from Code Owners" branch rule makes one of their approvals mandatory.
-# Nobody can approve their own pull request, so another owner reviews it.
+# TeachWiz code owners
+#
+# Each area has a primary owner (listed first) and a backup (second).
+# GitHub requests a review from both, and one approval from an owner other than
+# the pull request's author is required, so the backup can approve the primary's work.
+# When several patterns match a file, the last one wins.
 
-*  @mahmudcoding @bekmurod2510 @echo05w
+# Fallback for anything not listed below (scripts, package files, root files)
+*                  @mahmudcoding @echo05w
+
+# Backend: server, REST API, database, authentication
+/src/              @mahmudcoding @echo05w
+
+# Frontend: pages, styles, browser scripts, translations
+/public/           @bekmurod2510 @mahmudcoding
+
+# Tests and test fixtures
+/test/             @echo05w @bekmurod2510
+/test-support/     @echo05w @bekmurod2510
+
+# CI/CD pipeline, issue templates and this file
+/.github/          @echo05w @mahmudcoding
+
+# Documentation
+/docs/             @echo05w @bekmurod2510
+/README.md         @echo05w @bekmurod2510
